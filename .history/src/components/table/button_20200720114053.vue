@@ -1,0 +1,62 @@
+<template>
+  <span >
+    <el-button @click="selectName" size="small">
+			<i class="el-icon-search"></i>
+		{{$t('m.button.select')}}</el-button>
+		<el-button type="success" @click="addAction" size="small">
+			<i class="el-icon-circle-plus-outline"></i>
+			{{$t('m.button.add')}}</el-button>
+		<el-button type="warning" @click="updateAction" size="small">
+			<i class="el-icon-edit"></i>
+			{{$t('m.button.update')}}</el-button>
+		<el-button type="danger" @click="deleteAction" size="small">
+			<i class="el-icon-delete"></i>
+			{{$t('m.button.delete')}}</el-button>
+  </span>
+</template>
+<script>
+export default {
+  name: 'buttonList',
+  props: [
+    ''
+  ],
+  data () {
+    return {
+    }
+  },
+  computed: {
+      getInfo() {
+          if(this.tableInfo.get){
+              return this.$store.getters[this.tableInfo.get];
+          }
+      }
+  },
+  mounted() {
+      console.log(this.tableInfo)
+      console.log(this.$store.getters[this.tableInfo.get])
+  },
+  methods: {
+      addAction() {
+
+      },
+      deleteAction() {
+        
+      },
+      updateAction() {
+
+      },
+      selectAction() {
+
+      },
+      selectName() {
+
+      }
+    }
+}
+</script>
+<style lang="scss" scoped>
+#tableComponent{
+    height:calc(100% - 36px);
+    // border:solid 1px;
+}
+</style>

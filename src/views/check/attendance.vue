@@ -1,21 +1,26 @@
+<!--考勤管理查询条件输入-->
 <template>
   <div class="height_100 attendance">
     <div class="buttonGroup" v-if="tableInfo.addVisible && tableInfo.updateVisible">
+  <!-- 公司名称查询 -->
   <el-input size="small" v-model="page.corporationName"
       @keydown.enter.native="selectName" clearable
       @clear="selectName" :placeholder="$t('m.placeholder.corporation')"
     style="width:170px;margin-right:10px;"></el-input>
+     <!-- 部门名称查询 -->
   <el-input size="small" v-model="page.departmentName"
       @keydown.enter.native="selectName" clearable
       @clear="selectName" :placeholder="$t('m.placeholder.department')"
     style="width:170px;margin-right:10px;"></el-input>
   <!-- {{permissionArr}} -->
   <span style="display:inline-block;margin-right:10px;" v-show="permissionArr.includes('view')">
-		<el-input size="small" v-model="page.name"
+		<!-- 姓名查询 -->
+    <el-input size="small" v-model="page.name"
       @keydown.enter.native="selectName" clearable
       @clear="selectName" :placeholder="$t('m.placeholder.name')"
     style="width:170px;"></el-input>
   </span>
+  <!-- 日期选择 -->
     <el-date-picker size="small"
       v-model="date" @change="dateChange"
       style="width:300px;margin-right:10px;" format="yyyy-MM-dd HH:mm"
@@ -25,6 +30,7 @@
       :start-placeholder="$t('m.placeholder.startTime')"
       :end-placeholder="$t('m.placeholder.endTime')">
     </el-date-picker>
+    <!-- 导出excel -->
   <buttonList v-bind:permissionArr="permissionArr" @buttonEvents="buttonEvents"></buttonList>
 		<el-button style="margin-left:10px" type="success" @click="downloadExcel" size="small">
 			<i class="el-icon-download"></i>
@@ -51,6 +57,7 @@
       <i class="el-icon-turn-off"></i>
       操作按钮</el-button> -->
   </div>
+  <!-- 点击信息修改框 -->
   <el-form style="margin-left:60px;"
         class="form refuseCopy" :rules="rules" ref="addAction"
         size="small" label-position="left"

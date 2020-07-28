@@ -1,3 +1,4 @@
+<!--头部导航 -->
 <template>
   <div id="header" class="refuseCopy relative">
       <router-link
@@ -8,6 +9,9 @@
       {{$t('m.header.mjk')}}
       <!-- {{logo}} -->
       </router-link>
+      <!-- 页面内点击跳转，菜单项依然是激活状态 :default-active="$route.path" -->
+      <!-- hover显示二级菜单  mode="horizontal" -->
+      <!-- 头部菜单nav -->
       <el-menu
         style="padding-left:20%;height:41px;padding-bottom:10px;border:none;"
         :default-active="$route.path"
@@ -17,17 +21,20 @@
         class="el-menu-demo"
         mode="horizontal"
       >
+      <!-- 主页路由 -->
         <!-- @select="handleSelect" -->
         <el-menu-item class="menuItem"
           index="/nav"
         >
           {{ $t('m.header.home') }}
         </el-menu-item>
+        <!-- 账号路由 -->
         <el-menu-item class="menuItem"
           index="/system/account"
         >
           {{ $t('m.router.account') }}
         </el-menu-item>
+        <!-- 角色路由 -->
         <el-menu-item class="menuItem"
           index="/system/role"
         >
@@ -39,7 +46,7 @@
           作息列表
         </el-menu-item> -->
       </el-menu>
-      
+      <!-- 右边导航登录账号名称 -->
       <div class="removeItem">
         <el-dropdown>
           <span class="el-dropdown-link hello">
@@ -49,12 +56,15 @@
               src="../../assets/img/cat.png"
             > -->
           </span>
+         <!-- 移入显示休息修改和切换语言菜单 -->
           <el-dropdown-menu style="margin-top:-10px !important;" slot="dropdown">
+             <!-- 信息修改 -->
             <el-dropdown-item>
               <div @click="dialogVisible = true">
                 <i class="el-icon-setting"></i> {{$t('m.header.infoUpdate')}}
                 </div>
             </el-dropdown-item>
+            <!-- 语言切换 -->
             <el-dropdown-item>
               <div @click="toggleLanguage">
                 <i class="iconfont icon-language" style=""></i> 
@@ -70,8 +80,10 @@
             alt=""
           >
         </router-link> -->
+        <!-- 全屏缩放 -->
           <i :class="['iconfont', isFullScreen ? 'icon-anniu_xiaoping_icon' : 'icon-full-screen', 'screen']" @click="fullSCreen"></i> 
           <!-- <i class="iconfont icon-language icon" @click="toggleLanguage"></i>  -->
+        <!-- 退出登录 -->
         <router-link
           to=""
           style="vertical-align:top;color:#eee;font-size:18px;margin-left:10px;"
@@ -84,6 +96,7 @@
           <i class="el-icon-switch-button"></i>
         </router-link>
       </div>
+      <!-- 信息修改出框 -->
       <el-dialog v-el-drag-dialog width="500px"
        :visible.sync="dialogVisible" :title="$t('m.header.infoUpdate')">
         
@@ -139,6 +152,7 @@ export default {
             isFullScreen: false
         }
     },
+    //vuex缓存结果数据
     computed: {
       getTheme() {
         return this.$store.getters.getTheme;
@@ -163,6 +177,7 @@ export default {
                    document.mozFullScreenElement ||
                    document.webkitIsFullScreen|| false;
       },
+      //语言切换
       toggleLanguage() {
         console.log(this.$i18n);
         let locale = this.$i18n.locale;
@@ -173,6 +188,7 @@ export default {
         let info = locale === 'en' ? '切换成功' : 'change language successfully';
         this.$message.success(info);
       },
+      //全屏缩放
       fullSCreen() {
         if(this.screenStatus()) {
           fx.exitFullScreen();
@@ -185,6 +201,7 @@ export default {
         console.log(this.isFullScreen)
         this.isFullScreen = !this.isFullScreen;
       },
+      // 修改信息弹出框
       updatePassword(form, info) {
         this.$refs[form].validate(valid => {
           if(valid) {
@@ -199,6 +216,7 @@ export default {
           }
         })
       },
+      //退出登录
       removeLogin() {
         this.$store.dispatch('removeLogin');
         window.location.href = "/login";

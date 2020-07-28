@@ -1,3 +1,4 @@
+<!--element按钮-->
 <template>
   <div  v-if="tableInfo.addVisible && tableInfo.updateVisible" id="tableComponent" class="refuseCopy">
       <!-- v-if="addVisible && updateVisible" -->

@@ -1,3 +1,4 @@
+<!-- 首页内容main -->
 <template>
   <div class="height_100 navigator">
     <ul class="flexCake">

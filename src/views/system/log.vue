@@ -1,3 +1,4 @@
+<!-- 系统管理/日志管理 -->
 <template>
   <div class="height_100 log">
     <div class="buttonGroup" v-if="tableInfo.addVisible && tableInfo.updateVisible">

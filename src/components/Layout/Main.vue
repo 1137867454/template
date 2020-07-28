@@ -1,3 +1,4 @@
+<!--中心内容-->
 <template>
   <el-main id="Main">
     <breadcrumb></breadcrumb>
@@ -6,7 +7,7 @@
     </div>
 </el-main>
 </template>
-
+ 
 <script>
 import breadcrumb from '@/components/Layout/breadcrumb';
 export default {

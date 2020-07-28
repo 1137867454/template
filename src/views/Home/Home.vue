@@ -1,3 +1,4 @@
+<!-- 主览页 -->
 <template>
   <div id="home" class="height_100" >
     <Header></Header>

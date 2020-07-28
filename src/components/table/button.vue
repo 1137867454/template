@@ -1,3 +1,4 @@
+<!--element按钮-->
 <template>
   <span v-if="permissionArr && permissionArr.length">
     <el-button type="primary" v-show="permissionArr.includes('view')" @click="selectAction" size="small">
@@ -52,6 +53,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-#tableComponent{
-}
+// #tableComponent{
+// }
 </style>

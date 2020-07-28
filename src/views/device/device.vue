@@ -1,3 +1,4 @@
+<!-- 设备管理/设备管理 -->
 <template>
   <div class="height_100 eg1">
     <div class="buttonGroup" v-if="tableInfo.addVisible && tableInfo.updateVisible">

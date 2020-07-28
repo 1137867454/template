@@ -53,17 +53,11 @@ const system = {
           })
         }
       })
-      //         -二级目录  
-      // 顶级目录-二级目录
-      //         -二级目录  
-      // 将三级菜单插入到已经处理好的顶级目录
       bottomArr.forEach(a => {
         var flag = false;
         tree.find(tr => {
-          // 顶级目录下是否有二级目录
           if(tr.children) {
             flag = tr.children.find( mid => {
-              // 对每个二级目录进行搜寻，判断两者关联Id是否相等
               if(mid.parentId == a.parentId) {
                 if(!mid.children) {
                   mid.children = []

@@ -42,13 +42,10 @@ const attendence = {
     //  考勤查询 get /getCheckingInPage
     getAttendanceList({state, commit}, page) {
       if(page) {
-        // 保留page属性，添加、修改、删除之后依然保留当前页不变
         state.page = page;
       }else{
-        // 复查时（修改、删除、添加时），不需要再传page属性了，直接回调使用即可。
         page = state.page;
       }
-      // ``模板字符串下${}，可以直接使用js语法。
       let url = `/getCheckingInPage?pageSize=${page.pageSize}`
       +`&pageNum=${page.currentPage}&name=${page.name}`
       +`&departmentName=${page.departmentName}`
@@ -58,20 +55,16 @@ const attendence = {
       .then(res => {
         page.total = res.data.data.total * 1;
         console.log(res.data.data)
-        // 同步设置考勤列表
         commit('set_GetAttendanceList', res.data.data)
       }).catch(err => {
         
       })
     },
-    // 考勤记录导出(excel下载) post /getEquipmentExport
+    // 考勤记录导出 post /getEquipmentExport
     downloadExcel({state}, page) {
       return new Promise((resolve, reject) => {
         let url = `http://192.168.1.238:8080/getEquipmentExport`;
-        // 获取Token
         let token = getItem('token');
-        // 为什么不使用fx.setConnect
-        // 后台只传了stauts码，没有传code码，会导致axios报错
         axios({
           url: url,
           method: 'post',
@@ -81,7 +74,6 @@ const attendence = {
             // "Content-Type": "application/vnd.ms-excel"
             // 'Content-Type': 'application/x-www-form-urlencoded'
           },
-          // 重中之重：将后台响应的文件数据转为blob格式
           responseType: "blob"
         })
         .then(res => {
@@ -91,18 +83,12 @@ const attendence = {
             let fileName = '考勤表.xlsx';
             // 将`blob`对象转化成一个可访问的`url`
             let url = window.URL.createObjectURL(new Blob([res.data],));
-            // js创造一个a标签
             let link = document.createElement('a');
-            // 不可见
             link.style.display = 'none';
             link.href = url;
-            // 为该a标签添加属性download，置顶下载文件的名称和格式
             link.setAttribute('download', fileName);
-            // 将a标签放入body中
             document.body.appendChild(link);
-            // 模拟点击，跳出保存栏
             link.click();
-            // 清除该a标签
             document.body.removeChild(link);
             resolve();
           // let blob = res.data;

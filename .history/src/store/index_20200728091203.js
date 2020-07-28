@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+// 引入vuex子模块
 import getters from './getters'
 import addRouter from './modules/addRouter'
 import system from './modules/system'
@@ -8,7 +9,7 @@ import corporation from './modules/corporation'
 import attendence from './modules/attendence'
 import file from './modules/file'
 // 引入动态路由表
-import { asyncRouterMap } from '../router/asyncRouterMap'
+import router from '../router/index'
 // 引入localStorage封装函数
 import { setItem, getItem, removeItem } from '../utils/token'
 // 引入函数库
@@ -17,7 +18,6 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    asyncRouterMap: asyncRouterMap, //动态路由列表
     authorization: '',   //登录后获取的token信息，请求凭证
     user: {
       role: ''           //登录者的角色，即管理权限

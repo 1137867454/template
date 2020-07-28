@@ -7,11 +7,10 @@ import device from './modules/device'
 import corporation from './modules/corporation'
 import attendence from './modules/attendence'
 import file from './modules/file'
-// 引入动态路由表
 import { asyncRouterMap } from '../router/asyncRouterMap'
+import router from '../router/index'
 // 引入localStorage封装函数
 import { setItem, getItem, removeItem } from '../utils/token'
-// 引入函数库
 import fx from '../utils/fx';
 Vue.use(Vuex)
 

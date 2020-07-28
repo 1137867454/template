@@ -7,11 +7,10 @@ import device from './modules/device'
 import corporation from './modules/corporation'
 import attendence from './modules/attendence'
 import file from './modules/file'
-// 引入动态路由表
 import { asyncRouterMap } from '../router/asyncRouterMap'
-// 引入localStorage封装函数
+import router from '../router/index'
 import { setItem, getItem, removeItem } from '../utils/token'
-// 引入函数库
+import api from '../utils/api';
 import fx from '../utils/fx';
 Vue.use(Vuex)
 
@@ -132,24 +131,23 @@ export default new Vuex.Store({
         })
       })
     },
-    // 用户注销操作，删除用户登录之后localStorage值防止未登录状态访问
     removeLogin({state}) {
-      removeItem('token');      // 清除登录时返回的Token值
-      removeItem('name');       // 清除登录者的姓名
-      removeItem('username');   // 清除存取的用户名
-      removeItem('branch');     // 清除二三级路由
-      removeItem('tree');       // 清除加工过的路由总表
-      removeItem('catalogue');  // 清除顶级路由
-      this.breadList = [];      // 清空面包屑列表
-      console.log('removeLoginStatus');
+      removeItem('token');
+      removeItem('name')
+      removeItem('username')
+      removeItem('branch')
+      removeItem('tree')
+      removeItem('catalogue')
+      this.breadList = [];
+      console.log('removeLoginStatus')
     }
   },
-  modules: {      // 引入模块儿
-    file,         // 文件（excel、图片等）上传
-    system,       // 系统管理的请求方法
-    device,       // 设备管理的请求方法
-    addRouter,    // 动态路由的添加方法
-    attendence,   // 考勤管理的请求方法
-    corporation   // 公司管理的请求方法
+  modules: {
+    file,
+    system,
+    device,
+    addRouter,
+    attendence,
+    corporation
   }
 })

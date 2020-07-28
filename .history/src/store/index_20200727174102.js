@@ -7,11 +7,10 @@ import device from './modules/device'
 import corporation from './modules/corporation'
 import attendence from './modules/attendence'
 import file from './modules/file'
-// 引入动态路由表
 import { asyncRouterMap } from '../router/asyncRouterMap'
-// 引入localStorage封装函数
+import router from '../router/index'
 import { setItem, getItem, removeItem } from '../utils/token'
-// 引入函数库
+import api from '../utils/api';
 import fx from '../utils/fx';
 Vue.use(Vuex)
 
@@ -29,26 +28,22 @@ export default new Vuex.Store({
   mutations: {
     set_breadList(state, bread) { //同步请求设置面包屑
       console.log(state.breadList)
-      // 通过Array find方法来判断面包屑列表中是否有重复的路由，
-      // 重复则赋给flag当前重复的值，否则返回undefined
       let flag = state.breadList.find(v => {
         console.log(v.path)
         console.log(bread.path);
         return v.path == bread.path;
       })
       console.log(flag);
-      // 如果点击路由与面包屑列表不重复时，即flag为undefined时添加当前路由到该列表
       if(!flag){
         state.breadList.push(bread);
       }
     },
-    delete_breadList(state, i) {  //同步请求删除当前面包屑路由
+    delete_breadList(state, i) {
       console.log(i)
-      // 获取当前路由索引，通过Array splice方法剪切出去
       state.breadList.splice(i, 1); 
       console.log(state.breadList);
     },
-    themeChange(state, theme) {   //主题改变
+    themeChange(state, theme) {
       state.theme = theme;
       setItem('theme', theme);
     }
@@ -79,8 +74,6 @@ export default new Vuex.Store({
       url = '/system/getCatalogue';
       await fx.setConnect({url})
       .then(res => {
-        // 返回值为对象，直接存取localStorage中只会得到类似['object']的字符串,无法使用
-        // 故而先将其通过JSON.stringify 转化成JSON字符串，需要使用的时候再通过JSON.parse()转换回去即可
         setItem('catalogue', JSON.stringify(res.data.data));
       })
       // 获取权限列表(二三级路由)，之后需要插入到顶级目录中，组成动态权限路由
@@ -88,7 +81,6 @@ export default new Vuex.Store({
       await fx.setConnect({url})
       .then(res => {
         console.log(res);
-        // 道理同上
         localStorage.setItem('branch', JSON.stringify(res.data.data))
       })
     },
@@ -97,7 +89,6 @@ export default new Vuex.Store({
       let url = '/system/getCatalogue';
       fx.setConnect({url})
       .then(res => {
-        // 道理同上
         setItem('catalogue', JSON.stringify(res.data.data));
       })
     },
@@ -114,11 +105,11 @@ export default new Vuex.Store({
     // 添加面包屑
     addBreadCrumb({ state, commit }, bread) {
       console.log('breadCrumb');
-      // 点击导航条便会触发该方法，来存面包屑列表的路由集合
       commit('set_breadList', bread)
       
     },
     // 修改当前登录用户密码 post /userPasswordUpd
+
     updatePassword({state}, data) {
       return new Promise((resolve, reject) => {
         let url = `/userPasswordUpd`;
@@ -132,24 +123,23 @@ export default new Vuex.Store({
         })
       })
     },
-    // 用户注销操作，删除用户登录之后localStorage值防止未登录状态访问
     removeLogin({state}) {
-      removeItem('token');      // 清除登录时返回的Token值
-      removeItem('name');       // 清除登录者的姓名
-      removeItem('username');   // 清除存取的用户名
-      removeItem('branch');     // 清除二三级路由
-      removeItem('tree');       // 清除加工过的路由总表
-      removeItem('catalogue');  // 清除顶级路由
-      this.breadList = [];      // 清空面包屑列表
-      console.log('removeLoginStatus');
+      removeItem('token');
+      removeItem('name')
+      removeItem('username')
+      removeItem('branch')
+      removeItem('tree')
+      removeItem('catalogue')
+      this.breadList = [];
+      console.log('removeLoginStatus')
     }
   },
-  modules: {      // 引入模块儿
-    file,         // 文件（excel、图片等）上传
-    system,       // 系统管理的请求方法
-    device,       // 设备管理的请求方法
-    addRouter,    // 动态路由的添加方法
-    attendence,   // 考勤管理的请求方法
-    corporation   // 公司管理的请求方法
+  modules: {
+    file,
+    system,
+    device,
+    addRouter,
+    attendence,
+    corporation
   }
 })

@@ -34,36 +34,30 @@ const system = {
           tree.find((t, i) => {
             t.label = t.name;   // 化作elment-UI tree组件所需的数据格式
             t.menu = true;
-            if(t.id == v.nodeId) { // 是否关联
-              if(!t.children) {    // 一级目录是否存在二级目录数组
-                t.children = [];   // 存在跳过，不存在则添加
+            if(t.id == v.nodeId) {
+              if(!t.children) {
+                t.children = [];
               }
-              t.children.push({    // 添加二级目录下的信息
-                id: v.permissionId,//化作elment-UI tree组件所需的数据格式
+              t.children.push({
+                id: v.permissionId,
                 label: v.permissionName,
                 parentId: v.permissionId
               });
             }
           })
         }else{   //三级菜单
-          bottomArr.push({         // 添加三级目录下的信息
-            id: v.permissionId,    // 化作elment-UI tree组件所需的数据格式
+          bottomArr.push({
+            id: v.permissionId,
             parentId: v.parentId,
             label: v.permissionName
           })
         }
       })
-      //         -二级目录  
-      // 顶级目录-二级目录
-      //         -二级目录  
-      // 将三级菜单插入到已经处理好的顶级目录
       bottomArr.forEach(a => {
         var flag = false;
         tree.find(tr => {
-          // 顶级目录下是否有二级目录
           if(tr.children) {
             flag = tr.children.find( mid => {
-              // 对每个二级目录进行搜寻，判断两者关联Id是否相等
               if(mid.parentId == a.parentId) {
                 if(!mid.children) {
                   mid.children = []

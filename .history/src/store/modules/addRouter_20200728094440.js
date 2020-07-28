@@ -13,7 +13,7 @@ const addRouter = {
       role: '',
       type: '',
     },
-    // activeIndex: '1',
+    activeIndex: '1',
   },
   getters: {
     // getRouter: state => state.asyncRouterMap_,
@@ -22,9 +22,9 @@ const addRouter = {
     // get_activeIndex: state => state.activeIndex
   },
   mutations: {
-    // set_activeIndex({ state },route) {
-    //   state.user = 'route';
-    // },
+    set_activeIndex({ state },route) {
+      state.user = 'route';
+    },
     set_user(state, user) {
       state.user.role = user;
     },
@@ -89,13 +89,12 @@ const addRouter = {
         // console.log(branch)
         // console.log(roleArr)
         console.log(state.asyncRouterMap)
-        // 筛选完毕后的路由添加（重中之重）！！！
+        // 筛选完毕后的路由添加
         router.addRoutes(state.asyncRouterMap)
         /**
          *  至此动态路由实现完毕
          *  ps:当时写的时候能吐两升血，太难了，后台是省事儿，
-         *  咱们多了好些不必要的逻辑，被动！！！你之后该后台
-         *  做的事儿咱们前端尽量不做！！！从大局上来说做了也别扭
+         *  咱们多了好些不必要的逻辑，被动！！！
          **/
         
         // commit('set_user', 'user')

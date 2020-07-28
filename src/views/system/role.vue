@@ -125,8 +125,9 @@
           />
         <!-- :default-checked-keys="defaultKey" -->
         </el-form-item>
+         <!-- @check="nodeKey" -->
         <el-tree ref="tree" @check-change="getKey"
-        :data="data" @check="nodeKey"
+        :data="data"
         show-checkbox
         node-key="id"
         :default-expand-all="true"
@@ -159,66 +160,67 @@ import buttonList from '../../components/table/button'
 export default {
   name: 'eg1',
   components: {
-    labelTop,
-    buttonList
+    labelTop,   //分页组件
+    buttonList  //按钮组件
   },
   data() {
     return {
-      addVisible: true,     //添加框控制器
-      updateVisible: true,  //修改框控制器
-      expands: [],
-      selection: [],        //选中的条目
-      defaultKey: [],
-      getRowKey(row) {      //
-          return row.roleId;
+      addVisible: true,     // 添加框控制器
+      updateVisible: true,  // 修改框控制器
+      expands: [],          // el-table expands属性，暂时用不到
+      selection: [],        // 选中的条目
+      defaultKey: [],       // 角色默认的权限Id数组
+      getRowKey(row) {      // el-table中每个隐藏内容都需要一个不重复的键值
+          return row.roleId;// 暂时用不上
       },
-      page: {
-        currentPage: 1,
-        pageSize: 20,
-        roleName: '',
-        total: 0
+      page: {               // 分页属性，供查询使用
+        currentPage: 1,     // 默认当前页
+        pageSize: 20,       // 单页默认数据条数
+        roleName: '',       // 角色名称（根据它来模糊查询） 
+        total: 0            // 后台传递的数据总数，默认为0，请求过后改变
       },
-      switchStatus: false,
-      permission: {
-        permissionId:[]
+      switchStatus: false,  // 控制持续添加框的状态值，true为持续添加，false为一次添加
+      permission: {         // 权限对象，
+        permissionId:[]     // 权限数组
       },
-      permissionArr: [],
-      menuArr: [],
-      bottomArr: [],
-      rules:{
-        role: { required: true, message: '姓名为必填项', trigger: 'blur'},
-        // userName: { required: true, message: '姓名为必填项', trigger: 'blur'},
-        // password: { required: true, message: '密码为必填项', trigger: 'blur'},
-        // gender: { required: true, message: '性别为必填项', trigger: 'blur'},
-        // phone: { required: true, message: '联系方式为必填项', trigger: 'blur'},
-      },
-      data: [],
-      defaultProps: {
+      permissionArr: [],    // 当前路由的增删改查权力数组
+      menuArr: [],          // 二级菜单的权限数组
+      bottomArr: [],        // 三级菜单的权限数组
+      // rules:{
+      //   role: { required: true, message: '姓名为必填项', trigger: 'blur'},
+      //   // userName: { required: true, message: '姓名为必填项', trigger: 'blur'},
+      //   // password: { required: true, message: '密码为必填项', trigger: 'blur'},
+      //   // gender: { required: true, message: '性别为必填项', trigger: 'blur'},
+      //   // phone: { required: true, message: '联系方式为必填项', trigger: 'blur'},
+      // },
+      data: [],            // el-tree 的data值
+      defaultProps: {      // el-tree 组件默认的对象格式
         children: 'children',
         label: 'label'
       }
     }
   },
   computed: {
-    ...mapGetters([
+    ...mapGetters([        //computed引入vuex getters的便捷写法，需要先引入
       'get_RoleList',
       'get_Userlist'
     ]),
     // get_RoleList() {
     //   return this.$store.getters.get_RoleList;
     // }
-    getCatalogue() {
-      return JSON.parse(localStorage.getItem('catalogue'));
-    }
+    // getCatalogue() {
+    //   return JSON.parse(localStorage.getItem('catalogue'));
+    // }
   },
   mounted() {
+    // 挂载后获取用户列表
     this.$store.dispatch('getRoleList', this.page);
     // this.$store.dispatch('getRoleList');
+    // 获取当前路由下的权限 如：增、删、改、查。
     this.permissionArr = this.$route.meta.arr;
-    let tree;
+    // 权限表是否存入localStorage
     if(!localStorage.getItem('tree')){
-      this.$store.commit('treeMenu');
-    }else{
+      this.$store.commit('treeMenu'); //同步处理
     }
     this.data = JSON.parse(localStorage.getItem('tree'));
     
@@ -228,13 +230,13 @@ export default {
     // this.bottomArr = [4]
   },
   methods: {
-    nodeKey(x,y) {
-      // console.log(Array.prototype.delete)
-      // console.log(x, y)
-      if(x.menu) {
+    // nodeKey(x,y) {
+    //   // console.log(Array.prototype.delete)
+    //   // console.log(x, y)
+    //   if(x.menu) {
 
-      }
-    },
+    //   }
+    // },
     getKey(obj, v, t) {
       // 过滤一级菜单
       if(obj.children){
@@ -283,49 +285,50 @@ export default {
       // }
     },
      //翻页后序号连续
-    table_index(index){
+    table_index(index){     // el-table 默认序号不连续 每一页都是同样的序号
         return (this.page.currentPage-1) * this.page.pageSize + index + 1
     },
-    sizeChange(val) {
+    sizeChange(val) {       // 父子组件传值 获取分页组件的页数范围大小
       this.page.pageSize = val;
-      this.selectName()
+      this.selectName()     // 调用同一实例中的异步查询方法，再查一边角色列表
       console.log('sizeChange: ' + val)
     },
-    currentChange (val) {
+    currentChange (val) {   // 父子组件传值 ，获取分页组件当前的页数
       console.log('currentChage ' + val)
       this.page.currentPage = val
-      this.selectName()
+      this.selectName()     // 调用同一实例中的异步查询方法，再查一边角色列表
     },
-    buttonEvents(operation) {
-      switch(operation) {
+    buttonEvents(operation) { // 子组件button触发的函数
+      switch(operation) {     // 根据operation判断其操作
         case 'add': this.addVisible = false; break;
         case 'delete': this.deleteAction(); break;
         case 'update': this.updateAction(); break;
         case 'select': this.selectName(); break;
       }
     },
-    // 添加与修改
+    // 添加与修改行为
 		addAction(form, permission) {
+      // el-form 默认监测函数：
 			this.$refs[form].validate(valid => {
 				if(valid) {
           // console.log(permission)
+          // 二级目录的数组去重
           let menuId = Array.from(new Set(this.menuArr));
+          // 将三级菜单权限数组与二级目录进行连接。
           this.permission.permissionId = this.bottomArr.concat(menuId)
           console.log(this.permission.permissionId)
           if(this.updateVisible){ //账号添加、修改判别
             this.$store.dispatch('addRole', permission)
             .then(res => {
               console.log('addActionSuccess')
-              if(!this.switchStatus) {
-                this.addVisible = true;
-              }else{
-
+              if(!this.switchStatus) { // 是否进行连续添加
+                this.addVisible = true;// 否
               }
-              this.permission = {};
-              this.menuArr = [];
-              this.bottomArr = [];
-              this.defaultKey = []
-              this.$refs['tree'].setCheckedKeys([]);
+              this.permission = {};    // form表单的data值
+              this.menuArr = [];       // 顶级菜单的权限数组init
+              this.bottomArr = [];     // 二级级菜单的权限数组init
+              this.defaultKey = []     // 权限默认值初始化
+              this.$refs['tree'].setCheckedKeys([]); // 清除el-tree的选中状态
             })
           }else{
             this.$store.dispatch('updateRole', permission)
@@ -336,15 +339,17 @@ export default {
             })
           }
 				}else{
+          // 输入错误或缺漏，会显示错误提示
 					return false;
 				}
 			})
     },
-    deleteAction() {
+    deleteAction() {  //删除行为
       if(this.selection.length) {
+        // 之前select函数会改变this.selection的值
         console.log(this.selection)
-        let id = this.selection[0].roleId;
         let arr = [];
+        // 删除只需要角色Id的数组
         this.selection.forEach(v => {
           arr.push(v.roleId);
         })
@@ -359,31 +364,37 @@ export default {
         });
       }
     },
+    // 修改行为之前的准备
     updateAction() {
+      // 一次只能修改一个角色，即选中一个角色
       if(this.selection.length == 1) {
         console.log(this.selection)
-        this.updateVisible = false;
-        this.permission = this.selection[0];
+        this.updateVisible = false;  //显示修改框
+        this.permission = this.selection[0]; //获取当前角色的固有属性
         this.permission.id = this.permission.roleId;
+        // 根据roleId查询当前角色下的权限数组列表
         this.$store.dispatch('getRoleById', this.permission.id)
         .then(res => {
+          // el-tree 权限默认值的注入
           res.forEach(v => {
             console.log(v)
             this.defaultKey.push(v.permissionId)
           })
         console.log(this.data)
         let menu = [];
+        // 获取所有二级菜单的权限Id
         this.data.forEach(r => {
           r.children.forEach(c => {
             menu.push(c.id);
           })
         })
         console.log(menu)
+        // 过滤掉二级菜单的权限Id
         this.defaultKey = this.defaultKey.filter((d, i) => {
           return !menu.includes(d)
         })
+        // 将处理后的权限Id数组付给el-tree组件
         this.$refs['tree'].setCheckedKeys(this.defaultKey);
-        
         // this.$refs['tree'].setCheckedKeys(["442479847252561903", "442479847252561904", "442479847252561905"]);
         })
       }else{
@@ -393,10 +404,10 @@ export default {
         });
       }
     },
-    selectName() {
+    selectName() {    //根据page值进行查找
       this.$store.dispatch('getRoleList', this.page);
     },
-    cancel() {
+    cancel() {        //取消操作，数据初始化
       // if(!this.updateVisible) {
         this.permission = {};
         // this.permission.permissionId = [];

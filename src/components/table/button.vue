@@ -19,7 +19,7 @@
 export default {
   name: 'buttonList',
   props: [
-    'permissionArr'
+    'permissionArr'  //获取父组件传递的值
   ],
   data () {
     return {
@@ -37,7 +37,7 @@ export default {
       // console.log(this.$store.getters[this.tableInfo.get])
   },
   methods: {
-      addAction() {
+      addAction() { // 触发添加行为函数
         this.$emit('buttonEvents', 'add');
       },
       deleteAction() {

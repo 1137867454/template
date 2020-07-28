@@ -32,6 +32,7 @@
             </template>
           </el-table-column> -->
           <!--  align="center" -->
+    <!-- show-overflow-tooltip el-table属性，单行查出隐藏 -->
     <el-table-column align="center" show-overflow-tooltip
      v-for="(v, k, i) in tableInfo.parameter" :key="i"
       :prop="k"
@@ -66,26 +67,28 @@ export default {
     }
   },
   computed: {
-      getInfo() {
+      getInfo() { // 获取当前路由需要展示的信息table表
           if(this.tableInfo.get){
               return this.$store.getters[this.tableInfo.get];
           }
       }
   },
   mounted() {
-      console.log(this.tableInfo)
-      console.log(this.$store.getters[this.tableInfo.get])
+      // console.log(this.tableInfo)
+      // console.log(this.$store.getters[this.tableInfo.get])
   },
   methods: {
       select (selection, row) { // 单选
       this.selection = selection;
       console.log(this.selection)
     //   console.log(row)
+    // 触发父组件注册的单选函数
       this.$emit('select', selection)
     },
     selectAll (selection) { // 多选
       // console.log(selection)
       this.selection = selection
+      // 触发父组件注册的多选函数
       this.$emit('selectAll', selection)
       console.log(this.selection)
     },

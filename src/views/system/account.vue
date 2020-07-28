@@ -218,13 +218,13 @@ export default {
       permissionArr: [],
       switchStatus: false,
       user: {},
-      rules:{
-        name: { required: true, message: '姓名为必填项', trigger: 'blur'},
-        userName: { required: true, message: '姓名为必填项', trigger: 'blur'},
-        password: { required: true, message: '密码为必填项', trigger: 'blur'},
-        gender: { required: true, message: '性别为必填项', trigger: 'blur'},
-        // phone: { required: true, message: '联系方式为必填项', trigger: 'blur'},
-      },
+      // rules:{
+      //   name: { required: true, message: this.$i18n.t('m.rules.account'), trigger: 'blur'},
+      //   userName: { required: true, message: '姓名为必填项', trigger: 'blur'},
+      //   password: { required: true, message: '密码为必填项', trigger: 'blur'},
+      //   gender: { required: true, message: '性别为必填项', trigger: 'blur'},
+      //   // phone: { required: true, message: '联系方式为必填项', trigger: 'blur'},
+      // },
     }
   },
   computed: {
@@ -243,7 +243,7 @@ export default {
     this.$store.dispatch('getUserListPage', this.page);
     this.$store.dispatch('getRoleList', this.page);
     // this.$store.dispatch('getRoleList');
-    console.log(this.$route)
+    console.log(this)
     this.permissionArr = this.$route.meta.arr;
   },
   methods: {

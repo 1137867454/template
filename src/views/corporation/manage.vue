@@ -139,7 +139,7 @@
         <el-form-item label="" >
           <el-button
             type="primary"
-            @click="addAction('addAction', form)"
+            @click="addAction('addAction', corporation)"
           >
             {{$t('m.button.confirm')}}
           </el-button>
@@ -199,12 +199,12 @@ export default {
       },
       switchStatus: false,
       corporation: {},
-      rules:{ // 过滤规则
-        name: { required: true, message: '公司名称为必填项', trigger: 'blur'},
-        address: { required: true, message: '公司地址为必填项', trigger: 'blur'},
-        principal: { required: true, message: '负责人为必填项', trigger: 'blur'},
-        phone: { required: true, message: '联系方式为必填项', trigger: 'blur'}
-      }
+      // rules:{ // 过滤规则
+      //   name: { required: true, message: '公司名称为必填项', trigger: 'blur'},
+      //   address: { required: true, message: '公司地址为必填项', trigger: 'blur'},
+      //   principal: { required: true, message: '负责人为必填项', trigger: 'blur'},
+      //   phone: { required: true, message: '联系方式为必填项', trigger: 'blur'}
+      // }
     }
   },
   computed: {

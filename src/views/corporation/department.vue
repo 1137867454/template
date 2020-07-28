@@ -157,7 +157,7 @@
         <el-form-item label="" >
           <el-button
             type="primary"
-            @click="addAction('addAction', device)"
+            @click="addAction('addAction', form)"
           >
             {{$t('m.button.confirm')}}
           </el-button>
@@ -222,12 +222,12 @@ export default {
       permissionArr: [],
       switchStatus: false,
       form: {},
-      rules:{ // 过滤规则
-        departmentName: { required: true, message: '部门名称为必填项', trigger: 'blur'},
-        corporationId: { required: true, message: '隶属公司为必填项', trigger: 'blur'},
-        // departmentDesc: { required: true, message: '备注为必填项', trigger: 'blur'},
-        phone: { required: true, message: '联系方式为必填项', trigger: 'blur'}
-      }
+      // rules:{ // 过滤规则
+      //   departmentName: { required: true, message: '部门名称为必填项', trigger: 'blur'},
+      //   corporationId: { required: true, message: '隶属公司为必填项', trigger: 'blur'},
+      //   // departmentDesc: { required: true, message: '备注为必填项', trigger: 'blur'},
+      //   phone: { required: true, message: '联系方式为必填项', trigger: 'blur'}
+      // }
     }
   },
   computed: {

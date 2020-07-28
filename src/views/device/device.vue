@@ -94,7 +94,7 @@
         :model="device"
         label-width="88px"
       >
-        <el-form-item :label="$t('m.label.deviceName')" prop="name">
+        <el-form-item :label="$t('m.label.deviceName')" prop="deviceName">
           <el-input clearable
             v-model="device.name"
             class="input_260"
@@ -140,30 +140,30 @@ import buttonList from '../../components/table/button'
 export default {
   name: 'eg1',
   components: {
-    labelTop,
-    tables,
-    buttonList
+    labelTop,               // 分页组件
+    tables,                 // el-table组件
+    buttonList              // 按钮组件
   },
   data() {
     return {
-      addVisible: true,     //添加框控制器
-      updateVisible: true,  //修改框控制器
+      addVisible: true,     // 添加框控制器
+      updateVisible: true,  // 修改框控制器
       expands: [],
-      selection: [],        //选中的条目
-      getRowKey(row) {      //隐藏栏id设置(不能唯一)
+      selection: [],        // 选中的条目
+      getRowKey(row) {      // 隐藏栏id设置(不能唯一)
           return row.id;
       },
       permissionArr: [],
-      tableInfo: {
-        addVisible: true,     //添加框控制器
-        updateVisible: true,  //修改框控制器
+      tableInfo: {            // 父组件向子组件传值
+        addVisible: true,     // 添加框控制器
+        updateVisible: true,  // 修改框控制器
         currentPage: 1,
         pageSize: 20,
         // add: 'addAction',
         // update: 'updateDevice',
         // delete: 'deleteAction',
-        get: 'get_DeviceList',
-        parameter: {
+        get: 'get_DeviceList',// 将当前路由的getters函数传递过去，使之展示
+        parameter: {          // 子组件通过v-for 循环遍历
           'name': '设备名',
           'macId': 'mac地址',
           'equipmentDesc': '设备描述'
@@ -178,11 +178,11 @@ export default {
       },
       switchStatus: false,
       device: {},
-      rules:{
-        name: { required: true, message: '设备名称为必填项', trigger: 'blur'},
-        macId: { required: true, message: 'mac地址为必填项', trigger: 'blur'},
-        // equipmentDesc: { required: true, message: '设备描述', trigger: 'blur'},
-      },
+      // rules:{
+      //   name: { required: true, message: '设备名称为必填项', trigger: 'blur'},
+      //   macId: { required: true, message: 'mac地址为必填项', trigger: 'blur'},
+      //   // equipmentDesc: { required: true, message: '设备描述', trigger: 'blur'},
+      // },
     }
   },
   computed: {

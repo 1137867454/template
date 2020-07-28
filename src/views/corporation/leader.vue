@@ -136,7 +136,7 @@
             </el-option>
           </el-select>
         </el-form-item>
-        <el-form-item :label="$t('m.label.department')" prop="post">
+        <el-form-item :label="$t('m.label.job')" prop="post">
           <el-input clearable :autofocus="true"
             v-model="form.post"
             class="input_260"
@@ -145,7 +145,7 @@
         </el-form-item>
         
         
-        <el-form-item :label="$t('m.label.job')" prop="leadPersonalDesc">
+        <el-form-item :label="$t('m.label.description')" prop="leadPersonalDesc">
           <el-input clearable :autofocus="true"
             v-model="form.leadPersonalDesc"
             class="input_260"
@@ -160,7 +160,8 @@
             autocomplete="off"
           />
         </el-form-item> -->
-        <el-form-item :label="$t('m.label.description')" prop="phone">
+        <!--  prop="phone" -->
+        <el-form-item :label="$t('m.label.phone')">
           <el-input clearable :autofocus="true"
             v-model="form.phone" maxlength="11"
             class="input_260" show-word-limit
@@ -263,15 +264,15 @@ export default {
       form: {},
       department: [],
       departmentList: [],
-      rules:{ // 过滤规则
-        jobNumber: { required: true, message: '工号为必填项', trigger: 'blur'},
-        name: { required: true, message: '姓名为必填项', trigger: 'blur'},
-        sex: { required: true, message: '性别为必填项', trigger: 'blur'},
-        corporationId: { required: true, message: '隶属公司为必填项', trigger: 'blur'},
-        departmentId: { required: true, message: '所属部门为必填项', trigger: 'blur'},
-        // leadPersonalDesc: { required: true, message: '备注为必填项', trigger: 'blur'},
-        // phone: { required: true, message: '联系方式为必填项', trigger: 'blur'}
-      }
+      // rules:{ // 过滤规则
+      //   jobNumber: { required: true, message: '工号为必填项', trigger: 'blur'},
+      //   name: { required: true, message: '姓名为必填项', trigger: 'blur'},
+      //   sex: { required: true, message: '性别为必填项', trigger: 'blur'},
+      //   corporationId: { required: true, message: '隶属公司为必填项', trigger: 'blur'},
+      //   departmentId: { required: true, message: '所属部门为必填项', trigger: 'blur'},
+      //   // leadPersonalDesc: { required: true, message: '备注为必填项', trigger: 'blur'},
+      //   // phone: { required: true, message: '联系方式为必填项', trigger: 'blur'}
+      // }
     }
   },
   computed: {

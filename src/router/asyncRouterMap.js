@@ -41,6 +41,13 @@ export const asyncRouterMap = [{
     menu: 'log'
   },
   {
+    path: 'manage',
+    name: 'manage',
+    component: () => import("../views/system/manage"),
+    meta: { title: 'm.router.manage', icon: 'el-icon-document el'},
+    menu: 'manage'
+  },
+  {
     path: 'star',
     name: 'star1',
     component: () => import("../views/system/star"),

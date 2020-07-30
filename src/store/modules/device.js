@@ -1,3 +1,4 @@
+// 设备管理增删改查
 import fx from '../../utils/fx'
 import api from '../../utils/api'
 import { setItem, getItem, removeItem } from '../../utils/token'

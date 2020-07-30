@@ -105,7 +105,6 @@
   {{Array.from(new Set(menuArr))}}
   <br>
   {{defaultKey}} -->
-
   <el-form  style="margin-left:60px;"
         class="form refuseCopy" :rules="rules" ref="addAction"
         size="small" label-position="left"
@@ -128,15 +127,12 @@
         <!-- :default-checked-keys="defaultKey" -->
         </el-form-item>
          <!-- @check="nodeKey" -->
-         <!-- 角色增加的树形控件 -->
         <el-tree ref="tree" @check-change="getKey"
         :data="data"
         show-checkbox
         node-key="id"
         :default-expand-all="true"
         :props="defaultProps">
-        <!-- 节点是否可被选择show-checkbox -->
-        <!-- 是否展开所有的节点 :default-expand-all-->
         <!-- 默认选择 -->
         <!-- :check-on-click-node="true" -->
         <!-- :default-expanded-keys="[1, 2, 3]" -->

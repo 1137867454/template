@@ -1,3 +1,4 @@
+// 设置路由权限
 // 引入动态路由表
 import { asyncRouterMap } from '../../router/asyncRouterMap'
 // 引入router实例
@@ -45,6 +46,7 @@ const addRouter = {
         // 后台传递的所有的路由分支
         let branch = JSON.parse(getItem('branch'));
         console.log(branch)
+        
         // 角色权限（该角色下所对应的路由）
         let roleArr = [];
         // 操作权限列表（eg：增、删、改、查）
@@ -61,7 +63,7 @@ const addRouter = {
             permissionArr.push(v.permission)
           }
         })
-        // 操作权限列表写入写入localStorage
+        // 操作权限列表写入localStorage
         setItem('permissionArr',JSON.stringify(permissionArr))
         // console.log('permissionArr');
         // console.log(permissionArr);

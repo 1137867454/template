@@ -117,7 +117,8 @@ export const m = {
       attendanceManage: '考勤管理',     // 考勤管理 一级路由
       attendance: '考勤管理',           //     考勤管理 二级路由
       deviceManage: '设备管理',         // 设备管理 一级路由
-      device: '设备管理',               //     设备管理 二级路由
+      device: '设备管理', 
+      manage:'管理'              //     设备管理 二级路由
     }
   }
   

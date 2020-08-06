@@ -27,30 +27,31 @@ const system = {
       // 获得二级目录
       let branch = JSON.parse(getItem('branch'));
       let bottomArr = []; //底层菜单（3级）
+      let language = localStorage.getItem('locale');
       // 将二级目录插入到一级目录中去
       branch.forEach( (v, i) => {
         // v.label = v.permissionName;
         if(v.nodeId){ //分支与外部树干的关联ID,二级目录
           // 二级目录nodeId 与顶级目录的Id 一一对应
           tree.find((t, i) => {
-            t.label = t.name;   // 化作elment-UI tree组件所需的数据格式
+            t.label= language == 'en'? t.routeName : t.name;   // 化作element-UI tree组件所需的数据格式
             t.menu = true;
             if(t.id == v.nodeId) { // 是否关联
               if(!t.children) {    // 一级目录是否存在二级目录数组
                 t.children = [];   // 存在跳过，不存在则添加
               }
               t.children.push({    // 添加二级目录下的信息
-                id: v.permissionId,//化作elment-UI tree组件所需的数据格式
-                label: v.permissionName,
-                parentId: v.permissionId
+                id: v.permissionId,//化作element-UI tree组件所需的数据格式
+                parentId: v.permissionId,
+                label : language == 'zh'? v.permissionName : v.permissionEnglishName
               });
             }
           })
         }else{   //三级菜单
           bottomArr.push({         // 添加三级目录下的信息
-            id: v.permissionId,    // 化作elment-UI tree组件所需的数据格式
+            id: v.permissionId,    // 化作element-UI tree组件所需的数据格式
             parentId: v.parentId,
-            label: v.permissionName
+            label : language == 'zh'? v.permissionName : v.permissionEnglishName
           })
         }
       })
@@ -123,6 +124,18 @@ const system = {
         })
       })
     },
+    //验证用户名是否存在
+    existsUserName({state, dispatch}, data) {
+      return new Promise( (resolve, reject) => {
+        let url = `/existsUserName?userName=${data}`;
+        fx.setConnect({url})
+        .then(res => {
+          resolve(res)
+        }).catch(err => {
+
+        })
+      })
+    },
     // 修改角色以及对应的权限 post /system/updRole
     updateRole({state, dispatch}, data) {
       return new Promise( (resolve, reject) => {
@@ -168,6 +181,7 @@ const system = {
         })
       })
     },
+   
     
     // 删除用户信息 post  /system/removeUser
     deleteUser({state, dispatch}, id) {

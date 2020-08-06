@@ -185,8 +185,10 @@ export default {
         // console.log(this.$i18n.t(this.$route.meta.title))
         localStorage.locale = this.$i18n.locale;
         document.title = this.$i18n.t(this.$route.meta.title)
-        let info = locale === 'en' ? '切换成功' : 'change language successfully';
+        let info = locale === 'en' ? '切换成功,请重新登录' : 'change language successfully，Please log in again';
         this.$message.success(info);
+        this.$store.dispatch('removeLogin');
+        window.location.href = "/login";
       },
       //全屏缩放
       fullSCreen() {

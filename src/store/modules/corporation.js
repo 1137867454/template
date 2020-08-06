@@ -1,4 +1,4 @@
-// 公司管理增删改查
+// 获取接口参数
 import fx from '../../utils/fx'
 import api from '../../utils/api'
 import { setItem, getItem, removeItem } from '../../utils/token'

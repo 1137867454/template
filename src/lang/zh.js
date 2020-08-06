@@ -89,6 +89,7 @@ export const m = {
       name: '根据姓名查询',
       roleName: '根据角色名查询',
       roleName2: '请选择用户对应权限',
+      roleName3:'请输入角色名称',
       account: '根据用户名查询',
       username: '请输入用户名',
       password: '请输入密码',

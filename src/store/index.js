@@ -71,6 +71,7 @@ export default new Vuex.Store({
           setItem('token', data.token);
           // 将获取的name存到localStorage中
           setItem('name', data.name);
+          setItem('routerName', data.routerName);
           // 将获取的用户名存到localStorage中
           setItem('username', data.userName);
       })

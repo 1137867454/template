@@ -136,7 +136,7 @@
         </el-form-item>
         <el-form-item :label="$t('m.label.username')" prop="userName">
           <el-input clearable
-            v-model="user.userName"
+            v-model='user.userName'
             class="input_260"
             autocomplete="off"
           />
@@ -201,6 +201,7 @@ export default {
   },
   data() {
     return {
+       uname:'',
       addVisible: true,     //添加框控制器
       updateVisible: true,  //修改框控制器
       expands: [],
@@ -287,32 +288,42 @@ export default {
       }
     },
     // 添加与修改
-		addAction(form, user) {
-			this.$refs[form].validate(valid => {
-				if(valid) {
-          console.log(user)
-          if(this.updateVisible){ //账号添加、修改判别
-            this.$store.dispatch('addUser', user)
-            .then(res => {
-              console.log('addUserSuccess')
-              if(!this.switchStatus) {
-                this.addVisible = true;
-              }
-              this.user = {};
-            })
-          }else{
-            this.$store.dispatch('updateUser', user)
-            .then(res => {
-              this.user = {};
-              this.updateVisible = true;
-              // this.$store.dispatch('getUserListPage', this.page)
-            })
-          }
-				}else{
-					return false;
-				}
-			})
-    },
+		addAction(form, user) {
+      this.$refs[form].validate(valid => {
+        if(valid) {
+          if(this.updateVisible){ //账号添加、修改判别
+          this.$store.dispatch('existsUserName', user.userName)
+              .then(res => {
+                if(!res) { // true 不重复可添加，false重复不可添加
+                  this.$notify.error({
+                    title: '错误',
+                    message: '您输入的用户名已存在'
+                  })
+
+                }else{
+                  this.$store.dispatch('addUser', user)
+                  .then(res => {
+                    console.log('addUserSuccess')
+                    if(!this.switchStatus) {
+                      this.addVisible = true;
+                    }
+                    this.user = {};
+                  })
+                }
+              })
+          }else{
+            this.$store.dispatch('updateUser', user)
+            .then(res => {
+              this.user = {};
+              this.updateVisible = true;
+              // this.$store.dispatch('getUserListPage', this.page)
+            })
+          }
+        }else{
+          return false;
+        }
+      })
+    },
     deleteAction() {
       if(this.selection.length) {
         console.log(this.selection)
@@ -350,11 +361,13 @@ export default {
         this.user = {};
         this.selection = [];
       }
-      this.addVisible = true;this.updateVisible = true
+      this.addVisible = true;
+      this.updateVisible = true
       
     }
-	}
+  }
 }
+
 </script>
 
 <style scoped>

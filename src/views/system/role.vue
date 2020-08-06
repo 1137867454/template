@@ -113,7 +113,7 @@
         label-width="80px"
       >
         <el-form-item :label="$t('m.label.role')" prop="role">
-          <el-input clearable placeholder="请输入角色名称"
+          <el-input clearable :placeholder="$t('m.placeholder.roleName3')"
             v-model="permission.role"
             class="input_260"
             autocomplete="off"

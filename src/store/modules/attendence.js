@@ -40,6 +40,18 @@ const attendence = {
         
       })
     },
+     //  考勤图表
+     getECharts({state,dispatch}, data) {
+      return new Promise((resolve,reject) => {
+        let url = `/getECharts`;
+        fx.setConnect({url})
+        .then(res => {
+          resolve(res)
+        }).catch(err => {
+          
+        })
+      })
+    },
     //  考勤查询 get /getCheckingInPage
     getAttendanceList({state, commit}, page) {
       if(page) {

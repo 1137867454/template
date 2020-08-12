@@ -84,7 +84,6 @@ const device = {
       })
     },
     // 删除设备 post /equipment/delEquipment
-删除设备
     deleteRole({state, dispatch}, id) {
       return new Promise( (resolve, reject) => {
         let url = `/system/delRoleById?id=${id}`;

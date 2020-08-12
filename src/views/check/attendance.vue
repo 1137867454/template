@@ -45,6 +45,7 @@
 			<i class="el-icon-delete"></i>
 			{{$t('m.button.delete')}}</el-button> -->
 	</div>
+
     <tables v-show="permissionArr.includes('view')" v-bind:tableInfo="tableInfo" @select="select" @selectAll="selectAll"></tables>
     <labelTop v-if="tableInfo.addVisible && tableInfo.updateVisible" :label-info="page"
       @sizeChange="sizeChange"

@@ -6,8 +6,12 @@ import store from '../store/index'
 import i18n from '../lang'
 import {asyncRouterMap} from './asyncRouterMap'
 import anime from 'vue-animejs';
+import 'echarts-liquidfill'
+import VeCharts from 've-charts'
+
 Vue.prototype.$anime = anime;
 Vue.use(VueRouter)
+Vue.use(VeCharts)
 
 // 解决ncaught (in promise) Error: 
 // Redirected from "/login" to "/nav" 

@@ -269,9 +269,9 @@ export default {
       delete page.total;
       this.$store.dispatch('downloadExcel', this.page)
       .then(res => {
-        this.$message.success('导出成功')
+       
       }).catch(err => {
-        this.$message.error('导出失败')
+        
       })
     },
     // 添加与修改

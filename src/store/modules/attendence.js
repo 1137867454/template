@@ -41,12 +41,19 @@ const attendence = {
       })
     },
      //  考勤图表
-     getECharts({state,dispatch}, data) {
-      return new Promise((resolve,reject) => {
-        let url = `/getECharts`;
+     getECharts({state, dispatch}, page) {
+      return new Promise( (resolve, reject) => {
+      if(page) {
+        // 保留page属性，添加、修改、删除之后依然保留当前页不变
+        state.page = page;
+      }else{
+        // 复查时（修改、删除、添加时），不需要再传page属性了，直接回调使用即可。
+        page = state.page;
+      }
+        let url = `/getECharts?startTime=${page.startTime}&endTime=${page.endTime}`;
         fx.setConnect({url})
         .then(res => {
-          resolve(res)
+         resolve(res)
         }).catch(err => {
           
         })

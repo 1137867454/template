@@ -11,7 +11,7 @@ let key = true;
 const service = axios.create({
   // baseURL : 'http://192.168.1.222:8086',
   // 基础地址（协议、地址、端口号）
-  baseURL: 'http://192.168.1.238:8080/',
+  baseURL: 'http://47.100.92.182:8080/',
   // 请求间隔
   timeout: 150000
 })

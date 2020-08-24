@@ -58,7 +58,7 @@ export const m = {
       department: '部门名称为必填项',
       jobNumber: '工号为必填项',
       deviceName: '设备名称为必填项',
-      macId: 'Mac地址为必填项'
+      macAddress: 'Mac地址为必填项'
     },
     label: {        //input框前的概括
       oldPassword: '原密码',

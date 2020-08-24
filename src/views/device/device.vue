@@ -94,7 +94,7 @@
         :model="device"
         label-width="88px"
       >
-        <el-form-item :label="$t('m.label.deviceName')" prop="deviceName">
+        <el-form-item :label="$t('m.label.deviceName')" prop="name">
           <el-input clearable
             v-model="device.name"
             class="input_260"

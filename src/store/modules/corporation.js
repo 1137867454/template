@@ -407,7 +407,7 @@ const corporation = {
     // 考勤记录导出 post /getEquipmentExport
     downloadExcel({state}, page) {
       return new Promise((resolve, reject) => {
-        let url = `http://192.168.1.238:8080/getEquipmentExport`;
+        let url = `http://47.100.92.182:8080/getEquipmentExport`;
         // let url = `http://192.168.1.238:8080/getEquipmentExport2?name=${page.name}`
         // +`&departmentName=${page.departmentName}`
         // +`&corporationName=${page.corporationName}`

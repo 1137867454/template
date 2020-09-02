@@ -44,20 +44,29 @@
       >
       <el-upload 
       class="upload-demo center"
-      accept="application/vnd.ms-excel"
-      action="http://192.168.1.238:8080/corporation/upload"
+      accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+      action="http://47.100.92.182:8080/corporation/upload"
       :limit="1"
       :headers="header"
       :on-change="handleChange"
       :on-success="uploadSuccess"
       :on-error="uploadError"
       :file-list="fileList">
-      <router-link to="/" target="_target" style="margin-right:10px;">
+      <a href="http://mjkband01.oss-cn-shenzhen.aliyuncs.com/信息导入模板.xlsx" target="_target" style="margin-right:10px;">
         <el-button style="margin-left:10px" size="small" @click.stop=""><i class="el-icon-document-copy" /> 模板下载</el-button>
-      </router-link>
+      </a>
       <el-button size="small" type="primary"><i class="el-icon-s-promotion"/>点击上传</el-button>
-      <div slot="tip" class="el-upload__tip">请上传上传Excel文件</div>
+      <div slot="tip" class="el-upload__tip">请上传文件</div>
     </el-upload>
+    <!-- <uploadFile v-bind:fileInfo="staffInfos">
+              <template v-slot:template>
+                <router-link style="margin-left:10px;" target="_blank" to="/template/staff.xlsx">
+                  <el-button size="small" plain>
+                  模板
+                  </el-button>
+                </router-link>
+              </template>
+            </uploadFile> -->
       <span slot="footer" class="dialog-footer">
         <el-button size="small" @click="dialogVisible = false">完 成</el-button>
         <!-- <el-button size="small" type="primary" @click="dialogVisible = false;this.fileList = [];">确 定</el-button> -->
@@ -237,6 +246,18 @@ export default {
   },
   data() {
     return {
+      //  fileInfo: {
+      //   action: 'http://120.24.253.177:8777/media/uploadImage',
+      //   limit: 50,
+      //   accept: 'image/gif, image/jpeg, image/png',
+      //   type: 'warning'
+      // },
+      // staffInfos: {
+      //   action: 'http://192.168.1.238:8080/corporation/upload',
+      //   limit: 1,
+      //   accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      //   type: 'warning'
+      // },
       addVisible: true,     //添加框控制器
       updateVisible: true,  //修改框控制器
       dialogVisible: false, //员工信息导入弹出框

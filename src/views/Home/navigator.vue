@@ -15,7 +15,7 @@
       <!-- {{permissionArr}} -->
       <span style="display:inline-block;margin-right:10px;">
         <!-- 姓名查询 -->
-        <el-input
+        <!-- <el-input
           size="small"
           v-model="page.name"
           @keydown.enter.native="selectName"
@@ -23,7 +23,7 @@
           @clear="selectName"
           :placeholder="$t('m.placeholder.name')"
           style="width:170px;"
-        ></el-input>
+        ></el-input> -->
       </span>
       <!-- 日期选择 -->
       <el-date-picker

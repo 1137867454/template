@@ -14,7 +14,7 @@ console.log(home)
 // console.log(router)
 export const asyncRouterMap = [{
   path: '/system',
-  name: 'system',
+  name: 'system', 
   // 路由懒加载
   component: () => import('@/views/Home/Home'),
   meta: { title: 'm.router.systemManage', icon: 'el-icon-user-solid el' },

@@ -14,7 +14,7 @@
           v-for="(v,i) in getRouter"
           :key="i"
           :index="i + '0'"
-        >
+        > 
           <template slot="title">
             <i :class="v.meta.icon" :style="{'color':getTheme}" />
             <span slot="title">{{ $t(v.meta.title) }}</span>

@@ -82,6 +82,9 @@ export const m = {
       family: '紧急联系人',
       male: '男',
       female: '女',
+      type:'账号类型',
+      type1:'公司',
+      type2:'学校',
       uploadImg: '图片上传',
       uploadMessage: '只能上传jpg/png文件，且不超过500k',
     },
@@ -101,7 +104,8 @@ export const m = {
       nameOrPhone: '请输入姓名或联系方式',
       nameOrMac: '请输入设备名称或mac地址',
       startTime: '开始日期',
-      endTime: '结束日期'
+      endTime: '结束日期',
+      type:'请选择对应账号类型'
     },
     router: {
       login: '登录界面',                // 登录
@@ -112,6 +116,7 @@ export const m = {
       log: '日志管理',                  //     日志管理  二级路由
       corporationManage: '公司管理',    // 公司管理 一级路由
       corporation: '公司管理',          //     公司管理 二级路由
+      school:'学校管理',
       department: '部门管理',           //     部门管理 二级路由         
       leader: '领导管理',               //     领导管理 二级路由
       staff: '员工管理',                //     员工管理 二级路由

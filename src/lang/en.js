@@ -83,6 +83,9 @@ export const m = {
       family: 'Family',
       male: 'Male',
       female: 'Female',
+      type:'Account Type',
+      type1:'company',
+      type2:'school',
       uploadImg: 'Upload Image',
       uploadMessage: 'Only JPG / PNG files can be uploaded, and no more than 500K'
     },

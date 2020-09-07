@@ -173,6 +173,17 @@
             class="input_260" 
           />
         </el-form-item>
+         <el-form-item :label="$t('m.label.type')" prop="type">
+         <el-select class="input_260"
+         v-model="user.type" :placeholder="$t('m.placeholder.type')">
+          <el-option  
+            v-for="item in typeList"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        </el-form-item>
         <el-form-item label="">
           <el-button
             type="primary"
@@ -201,6 +212,7 @@ export default {
   },
   data() {
     return {
+      isShow:true,
        uname:'',
       addVisible: true,     //添加框控制器
       updateVisible: true,  //修改框控制器
@@ -209,6 +221,16 @@ export default {
       getRowKey(row) {      //
           return row.userId;
       },
+      typeList:[{
+         value:'1',
+         label:'公司'
+      },
+      {
+        value:'2',
+        label:'学校'
+      }
+      ],
+      value:'',
       page: {
         currentPage: 1,
         pageSize: 20,

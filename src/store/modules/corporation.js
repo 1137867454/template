@@ -219,6 +219,20 @@ const corporation = {
         })
       })
     },
+    // 根据公司id加载部门列表 /corporation/loadDepartmentByCorpId
+    getDepartmentIdList({state, commit}, id) {
+      return new Promise((resolve, reject) => {    
+        let url = `/corporation/loadDepartmentByCorpId?id=${id}`;
+        fx.setConnect({url})
+        .then(res => {
+          commit('set_DepartmentList', res.data.data);
+         
+          resolve(res.data.data);
+        }).catch(err => {
+  
+        })
+      })
+    },
     /**
      * 领导业务
      *  
@@ -358,6 +372,7 @@ const corporation = {
 
       })
     },
+
     /**
      * 考勤管理
     */
@@ -407,7 +422,7 @@ const corporation = {
     // 考勤记录导出 post /getEquipmentExport
     downloadExcel({state}, page) {
       return new Promise((resolve, reject) => {
-        let url = `http://47.100.92.182:8080/getEquipmentExport`;
+        let url = `http://192.168.1.238:8080/getEquipmentExport`;
         // let url = `http://192.168.1.238:8080/getEquipmentExport2?name=${page.name}`
         // +`&departmentName=${page.departmentName}`
         // +`&corporationName=${page.corporationName}`

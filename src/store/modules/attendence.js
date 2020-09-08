@@ -87,7 +87,7 @@ const attendence = {
     // 考勤记录导出(excel下载) post /getEquipmentExport
     downloadExcel({state}, page) {
       return new Promise((resolve, reject) => {
-        let url = `http://47.100.92.182:8080/getEquipmentExport`;
+        let url = `http://192.168.1.238:8080/getEquipmentExport`;
         // 获取Token
         let token = getItem('token');
         // 为什么不使用fx.setConnect

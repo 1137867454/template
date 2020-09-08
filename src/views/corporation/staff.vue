@@ -45,7 +45,7 @@
       <el-upload 
       class="upload-demo center"
       accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      action="http://47.100.92.182:8080/corporation/upload"
+      action="http://192.168.1.238:8080/corporation/upload"
       :limit="1"
       :headers="header"
       :on-change="handleChange"
@@ -196,7 +196,7 @@
         
         <el-form-item style="position:absolute;top:80px;left:400px;">
           <el-upload class="input_260"
-            action="http://47.100.92.182:8080/media/uploadImage"
+            action="http://192.168.1.238:8080/media/uploadImage"
             :headers="header"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -296,7 +296,8 @@ export default {
         corpId: '',
         corporationName: '',
         departmentId: '',
-        nameOrPhone: ''
+        nameOrPhone: '',
+        departmentName:''
       },
       header: {
         Authorization: localStorage.getItem('token')
@@ -320,6 +321,7 @@ export default {
   computed: {
     ...mapGetters([
       'get_CorporationList',
+      'get_DepartmentList'
       // 'get_Userlist'
     ]),
     // getCatalogue() {
@@ -330,6 +332,7 @@ export default {
     // this.$store.dispatch('getUserListPage', this.page);
     this.$store.dispatch('getStaffList', this.page);
     this.$store.dispatch('getCorporationList', {...this.page})
+    //  this.$store.dispatch('getDepartmentIdList',this.page)
     this.permissionArr = this.$route.meta.arr;
     // this.$store.dispatch('getStaffList',this.page);
     // this.$notify.info({
@@ -389,7 +392,7 @@ export default {
       let page = {...this.page};
       page.corpId = id;
       delete this.form.departmentId;
-      this.$store.dispatch('getDepartmentList', page)
+      this.$store.dispatch('getDepartmentList',page)
       .then(res => {
         this.departmentList = res.records;
       })

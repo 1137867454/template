@@ -25,6 +25,7 @@
         <!-- @select="handleSelect" -->
         <el-menu-item class="menuItem"
           index="/nav"
+          
         >
           {{ $t('m.header.home') }}
         </el-menu-item>

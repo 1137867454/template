@@ -117,9 +117,12 @@ export const m = {
       corporationManage: '公司管理',    // 公司管理 一级路由
       corporation: '公司管理',          //     公司管理 二级路由
       school:'学校管理',
-      department: '部门管理',           //     部门管理 二级路由         
-      leader: '领导管理',               //     领导管理 二级路由
-      staff: '员工管理',                //     员工管理 二级路由
+      department: '部门管理',           //     部门管理 二级路由  
+      class:'班级管理',       
+      leader: '领导管理', 
+      teacher:'教师管理',              //     领导管理 二级路由
+      staff: '员工管理', 
+      student:'学生管理',            
       attendanceManage: '考勤管理',     // 考勤管理 一级路由
       attendance: '考勤管理',           //     考勤管理 二级路由
       deviceManage: '设备管理',         // 设备管理 一级路由

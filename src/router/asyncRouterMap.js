@@ -74,6 +74,13 @@ export const asyncRouterMap = [{
     component: () => import('../views/corporation/department'),
     menu: 'department'
   },
+  // {
+  //   path: 'department',
+  //   name: 'department',
+  //   meta: { title: 'm.router.class', icon: 'el-icon-s-help el'},
+  //   component: () => import('../views/corporation/department'),
+  //   menu: 'department'
+  // },
   {
     path: 'leader',
     name: 'leader',

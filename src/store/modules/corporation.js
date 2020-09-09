@@ -372,6 +372,22 @@ const corporation = {
 
       })
     },
+    //学生图片批量导入 
+    uploadBatch ({ state, rootState, dispatch}, file) {
+      return new Promise((resolve, reject) => {
+        let url = `/corporation/uploadPicture`
+        let methods = 'post'
+        let Authorization = rootState.Authorization;
+        let data = file;
+        fx.setConnect({state}, {url, methods, data, Authorization })
+      
+        }).then( res => {
+          resolve(res.data.data);
+        })
+        .catch( error => {
+        })
+      // })
+    },
 
     /**
      * 考勤管理
@@ -422,7 +438,7 @@ const corporation = {
     // 考勤记录导出 post /getEquipmentExport
     downloadExcel({state}, page) {
       return new Promise((resolve, reject) => {
-        let url = `http://192.168.1.238:8080/getEquipmentExport`;
+        let url = `http://192.168.1.238/getEquipmentExport`;
         // let url = `http://192.168.1.238:8080/getEquipmentExport2?name=${page.name}`
         // +`&departmentName=${page.departmentName}`
         // +`&corporationName=${page.corporationName}`

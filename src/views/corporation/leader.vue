@@ -171,7 +171,7 @@
         
         <el-form-item style="position:absolute;top:80px;left:400px;">
           <el-upload class="input_260"
-            action="http://192.168.1.238:8080/media/uploadImage"
+            action="http://192.168.1.238/media/uploadImage"
             :headers="header"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -238,7 +238,7 @@ export default {
           jobNumber: '工号',
           name: '姓名',
           sex: '性别',
-          post: '职业',
+          post: '学科',
           phone: '联系方式',
           // patriarch: '紧急联系人',
           'leadPersonalDesc': '备注',

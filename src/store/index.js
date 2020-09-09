@@ -91,7 +91,7 @@ export default new Vuex.Store({
         console.log(res);
         // 道理同上
         localStorage.setItem('branch', JSON.stringify(res.data.data))
-      })
+      }) 
     },
     // 加载目录 get /system/getCatalogue
     getCatalogue({}) {

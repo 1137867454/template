@@ -71,7 +71,7 @@ export default new Vuex.Store({
           setItem('token', data.token);
           // 将获取的name存到localStorage中
           setItem('name', data.name);
-          setItem('routerName', data.routerName);
+          setItem('routeName', data.routeName);
           // 将获取的用户名存到localStorage中
           setItem('username', data.userName);
       })
@@ -91,7 +91,7 @@ export default new Vuex.Store({
         console.log(res);
         // 道理同上
         localStorage.setItem('branch', JSON.stringify(res.data.data))
-      })
+      }) 
     },
     // 加载目录 get /system/getCatalogue
     getCatalogue({}) {

@@ -45,7 +45,7 @@
       <el-upload 
       class="upload-demo center"
       accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-      action="http://192.168.1.238:8080/corporation/upload"
+      action="http://47.100.92.182:8080/corporation/upload"
       :limit="1"
       :headers="header"
       :on-change="handleChange"
@@ -72,6 +72,24 @@
         <!-- <el-button size="small" type="primary" @click="dialogVisible = false;this.fileList = [];">确 定</el-button> -->
       </span>
     </el-dialog>
+     <el-upload class="pictureUpload"
+            action="http://47.100.92.182:8080/corporation/uploadPicture"
+            :headers="header"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :file-list="fileList"
+            :before-upload="beforeUpload"
+            :on-success="uploadSuccess"
+            :on-error="uploadError"
+            :on-exceed="uploadExceed"          
+             multiple
+            :limit="100" 
+            accept="image/png,image/jpg,image/jpeg"
+           >
+            <el-button size="small" type="primary">{{$t('m.label.uploadImg')}}</el-button>
+            <!-- <div slot="tip" class="el-upload__tip" style="font-size:13px;">{{$t('m.label.uploadMessage')}}</div> -->
+          </el-upload>
+         
 		<!-- <el-button @click="selectName" size="small">
 			<i class="el-icon-search"></i>
 		查询</el-button>
@@ -196,7 +214,7 @@
         
         <el-form-item style="position:absolute;top:80px;left:400px;">
           <el-upload class="input_260"
-            action="http://192.168.1.238:8080/media/uploadImage"
+            action="http://47.100.92.182:8080/media/uploadImage"
             :headers="header"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -258,6 +276,7 @@ export default {
       //   accept: 'application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       //   type: 'warning'
       // },
+      
       addVisible: true,     //添加框控制器
       updateVisible: true,  //修改框控制器
       dialogVisible: false, //员工信息导入弹出框
@@ -484,7 +503,7 @@ export default {
               // this.page.departmentId = form.departmentId;
               this.$store.dispatch('getStaffList', this.page);
               this.fileList = [];
-              this.form = {};
+              this.form = {}; 
             })
           }else{
             delete form.pictureUrl;
@@ -537,6 +556,13 @@ export default {
         this.form = JSON.parse(JSON.stringify(this.selection[0]));
         console.log(this.selection)
         // this.corporation.id = this.user.id;
+         let page = {...this.page};
+        page.corpId = this.form.corporationId;
+        //delete this.form.departmentId;
+        this.$store.dispatch('getDepartmentList',page)
+        .then(res=>{
+          this.departmentList = res.records;
+        })
       }else{
          this.$notify.warning({
           title: '错误提示',
@@ -589,5 +615,9 @@ label{
   border-radius:10px;
   padding:10px;
   box-shadow: 0 0 10px #999;
+}
+.pictureUpload{
+  display: inline-block;
+  margin-left: 12px;
 }
 </style>

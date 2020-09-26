@@ -47,7 +47,8 @@ export default {
             unfold: false,      //导航栏是否展开
             activeIndex: '',
             index: '',
-            breadList: []
+            breadList: [],
+            user:{},
         }
     },
     watch: {
@@ -64,6 +65,15 @@ export default {
           // console.log(this.$store.getters.getRouter)
           let router = this.$store.getters.getRouter
           router = router.filter(v => {
+            // {{type == 1 ? $t(m.router.school) : $t(m.router.corporation)}}
+//              this.$store.dispatch('addUser', user)
+//                   .then(res => {
+//            if(user.type==1){
+//               router.meta.title='$t(m.router.school)'
+//            }else{
+//              router.meta.title='$t(m.router.corporation)'
+//            }
+//           })
             return v.children.length;
           })
             return router;

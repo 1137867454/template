@@ -171,7 +171,7 @@
         
         <el-form-item style="position:absolute;top:80px;left:400px;">
           <el-upload class="input_260"
-            action="http://192.168.1.238:8080/media/uploadImage"
+            action="http://47.100.92.182:8080/media/uploadImage"
             :headers="header"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -482,6 +482,13 @@ export default {
         this.form = JSON.parse(JSON.stringify(this.selection[0]));
         console.log(this.selection)
         // this.corporation.id = this.user.id;
+         let page = {...this.page};
+        page.corpId = this.form.corporationId;
+        //delete this.form.departmentId;
+        this.$store.dispatch('getDepartmentList',page)
+        .then(res=>{
+          this.departmentList = res.records;
+        })
       }else{
          this.$notify.warning({
           title: '错误提示',

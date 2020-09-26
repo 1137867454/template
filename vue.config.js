@@ -25,7 +25,7 @@ module.exports = {
       '/api': {
         // http://192.168.1.238:8777
         // target: 'http://120.24.253.177:8777', // API服务器的地址
-        target: 'http://192.168.1.238:8080', // API服务器的地址
+        target: 'http://47.100.92.182:8080', // API服务器的地址
         ws: true, // 代理websockets
         changeOrign: true, // 虚拟的站点需要更管origin
         pathRewrite: { // 重写路径 比如'/api/aaa/ccc'重写为'/aaa/ccc'

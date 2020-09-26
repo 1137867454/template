@@ -116,13 +116,19 @@ export const m = {
       log: 'Log',                       //    日志管理  二级路由
       corporationManage: 'Corporation', // 公司管理 一级路由
       corporation: 'Company',        //     公司管理 二级路由
-      department: 'Department',         //     部门管理 二级路由         
+      school:'School',
+      department: 'Department',         //     部门管理 二级路由  
+      class:'Class',        
       leader: 'Leader',                 //     领导管理 二级路由
+      teacher:'Teacher', 
       staff: 'Staff',                   //     员工管理 二级路由
+      student:'Student',
       attendanceManage: 'Attendance',   // 考勤管理 一级路由
       attendance: 'Records',         //     考勤管理 二级路由
       deviceManage: 'Device',           // 设备管理 一级路由
       device: 'Management', 
-      manage:'manage'            //      设备管理 二级路由
+      manage:'manage',            //      设备管理 二级路由
+      attendanceManageArr:'attendanceManageArr',
+      shiftManage:'shiftManage'
     }
   }

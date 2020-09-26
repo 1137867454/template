@@ -22,7 +22,7 @@
 			删除</el-button> -->
      
 	</div>
-    <tables v-bind:tableInfo="tableInfo" @select="select"></tables>
+    <tables v-bind:tableInfo="tableInfo" @select="select" @selectAll="selectAll"></tables>
     <labelTop v-if="tableInfo.addVisible && tableInfo.updateVisible" :label-info="page"
       @sizeChange="sizeChange"
       @currentChange="currentChange"></labelTop>

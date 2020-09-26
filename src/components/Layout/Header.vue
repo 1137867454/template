@@ -6,8 +6,8 @@
         id="logo"
         to="/"
       >
-      {{$t('m.header.mjk')}}
-      <!-- {{logo}} -->
+      <!-- {{$t('m.header.mjk')}} -->
+      {{logo}}
       </router-link>
       <!-- 页面内点击跳转，菜单项依然是激活状态 :default-active="$route.path" -->
       <!-- hover显示二级菜单  mode="horizontal" -->
@@ -25,7 +25,6 @@
         <!-- @select="handleSelect" -->
         <el-menu-item class="menuItem"
           index="/nav"
-          
         >
           {{ $t('m.header.home') }}
         </el-menu-item>

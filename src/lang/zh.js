@@ -85,7 +85,7 @@ export const m = {
       type:'账号类型',
       type1:'公司',
       type2:'学校',
-      uploadImg: '图片上传',
+      uploadImg: '照片导入',
       uploadMessage: '只能上传jpg/png文件，且不超过500k',
     },
     placeholder: {  // input框中的提示语句
@@ -127,7 +127,10 @@ export const m = {
       attendance: '考勤管理',           //     考勤管理 二级路由
       deviceManage: '设备管理',         // 设备管理 一级路由
       device: '设备管理', 
-      manage:'管理'              //     设备管理 二级路由
+      manage:'管理' ,             //     设备管理 二级路由
+      attendanceManageArr:'考勤组管理',
+      shiftManage:'班次管理'
+
     }
   }
   

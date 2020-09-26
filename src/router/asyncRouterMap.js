@@ -74,13 +74,6 @@ export const asyncRouterMap = [{
     component: () => import('../views/corporation/department'),
     menu: 'department'
   },
-  // {
-  //   path: 'department',
-  //   name: 'department',
-  //   meta: { title: 'm.router.class', icon: 'el-icon-s-help el'},
-  //   component: () => import('../views/corporation/department'),
-  //   menu: 'department'
-  // },
   {
     path: 'leader',
     name: 'leader',
@@ -115,6 +108,18 @@ export const asyncRouterMap = [{
       name: 'ad1',
       component: () => import('../views/check/attendance'),
       meta: { title: 'm.router.attendance', icon: 'el-icon-date el'},
+      menu: 'attendance'
+    },{
+      path: 'clockArr',
+      name: 'clockArr',
+      component: () => import('../views/check/clockArr'),
+      meta: { title: 'm.router.attendanceManageArr', icon: 'el-icon-bangzhu el'},
+      menu: 'attendance'
+    },{
+      path: 'shiftManage',
+      name: 'shiftManage',
+      component: () => import('../views/check/shiftManage'),
+      meta: { title: 'm.router.shiftManage', icon: 'el-icon-paperclip el'},
       menu: 'attendance'
     },{
       path: 'eg1',

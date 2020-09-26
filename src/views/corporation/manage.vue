@@ -183,7 +183,7 @@ export default {
         // delete: 'deleteAction',
         get: 'get_CorporationList', //vuex中获取当前table列表的getter函数
         parameter: {    //el-table 循环展示的属性列表
-          'name': '公司',
+          'name': '学校',
           'principal': '负责人',
           'phone': '电话',
           'address': '地址',

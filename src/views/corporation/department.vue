@@ -204,7 +204,7 @@ export default {
           // 'principal': '负责人',
           // 'phone': '电话',
           // 'address': '地址',
-          'departmentName': '部门名称',
+          'departmentName': '班级',
           'anotherName': '别名',
           'departmentDesc': '备注',
           // corporationId: 

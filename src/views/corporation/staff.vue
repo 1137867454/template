@@ -37,12 +37,32 @@
     <buttonList v-bind:permissionArr="permissionArr" @buttonEvents="buttonEvents"></buttonList>
     <el-button style="margin-left:10px" size="small" @click="dialogVisible = true"><i class="el-icon-upload2" /> {{$t('m.button.import')}}</el-button>
     <el-dialog v-el-drag-dialog
-      title="员工信息导入"
+      title="学生图片导入"
       :visible.sync="dialogVisible"
       width="500px" center
       @close="handleClose"
       >
-      <el-upload 
+    
+       <form id="uploadForm" style="margin-top:-11px;" action="" method="post" enctype="multipart/form-data">
+              <!-- <input id="File1" name="uploadFile" accept="image/gif, image/jpeg" multiple="multiple" type="file" value="" /> -->
+              <!-- <input id="btnImportOK" type="button" value="上传" /> -->
+              <span class="upload-wrap anticon" nv-file-drop="" uploader="uploader">
+                  <input @change="uploadClick($event)" class="file-ele" id="File1" name="uploadFile" accept="image/gif, image/jpeg" multiple="multiple" type="file" value="" />
+          <!--         <div  class="file-open"><em class="icon icon-upload"></em>&nbsp;选取文件</div>     -->
+              </span>
+              <el-button id="btnImportOK" type="success" size="small" @click="student_photo_upload">上传文件</el-button>
+            </form>
+            
+             <div style="margin:10px 11px;">
+              <div style="text-overflow:ellipsis;width:100%;white-space:nowrap;overflow:hidden;height:20px;margin-top:10px;">
+                <span v-if="studentPhoto.length">共{{studentPhoto.length}}个</span>
+                <span v-for="(v, i) in studentPhoto" :key="i">
+                  {{v.name}}
+                </span>
+              </div>
+            </div>
+            
+      <!-- <el-upload 
       class="upload-demo center"
       accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
       action="http://47.100.92.182:8080/corporation/upload"
@@ -54,10 +74,10 @@
       :file-list="fileList">
       <a href="http://mjkband01.oss-cn-shenzhen.aliyuncs.com/信息导入模板.xlsx" target="_target" style="margin-right:10px;">
         <el-button style="margin-left:10px" size="small" @click.stop=""><i class="el-icon-document-copy" /> 模板下载</el-button>
-      </a>
+      </a> 
       <el-button size="small" type="primary"><i class="el-icon-s-promotion"/>点击上传</el-button>
       <div slot="tip" class="el-upload__tip">请上传文件</div>
-    </el-upload>
+    </el-upload>-->
     <!-- <uploadFile v-bind:fileInfo="staffInfos">
               <template v-slot:template>
                 <router-link style="margin-left:10px;" target="_blank" to="/template/staff.xlsx">
@@ -214,7 +234,11 @@
         
         <el-form-item style="position:absolute;top:80px;left:400px;">
           <el-upload class="input_260"
+<<<<<<< HEAD
             action="http://47.100.92.182:8080/media/uploadImage"
+=======
+            action="http://192.168.1.238/media/uploadImage"
+>>>>>>> b4691a98fa0d531a173e9b94b6abe1c0032ad58f
             :headers="header"
             :on-preview="handlePreview"
             :on-remove="handleRemove"
@@ -285,6 +309,7 @@ export default {
       // getRowKey(row) {      //
       //     return row.id;
       // },
+      studentPhoto: [],  //学生照片
       permissionArr: [],
       tableInfo: {  //当前组件向子组件table 传值
         addVisible: true,     //添加框控制器
@@ -296,11 +321,11 @@ export default {
         // delete: 'deleteAction',
         get: 'get_StaffList', //vuex中获取当前table列表的getter函数
         parameter: {    //el-table 循环展示的属性列表
-          jobNumber: '工号',
+          jobNumber: '学号',
           name: '姓名',
-          phone: '电话',
+          phone: '家长电话',
           sex: '性别',
-          post: '职业',
+          post: '班级',
           // 'principal': '负责人',
           patriarch: '紧急联系人',
           'personalDesc': '备注',
@@ -468,6 +493,39 @@ export default {
       }
       return testmsg  && isLt4M;
     },
+     uploadClick(e) {
+      this.studentPhoto = e.target.files;
+      // console.log(e.target.files)
+    },
+     student_photo_upload() {
+      let uploadFile = document.querySelector('#File1').files;
+      // console.log(Object.prototype.toString.call(uploadFile))
+      let formData =new FormData();
+      if(uploadFile) {
+        uploadFile.forEach(v => {
+          formData.append('file', v);
+        })
+      }
+      // let formData = new FormData($("#uploadForm")[0]);
+      let id = '';
+      if(!this.studentPhoto.length){
+        this.$message.error('请先上传图片');
+        return ;
+      }
+      // let loading = this.openLoading();
+      this.$store.dispatch('uploadBatch', formData)
+      //  axios({
+      //     url: `http://192.168.1.238:8080/corporation/uploadPicture`,
+      //     method: 'post',
+      //     data: formData
+      //   })
+      .then(() => {
+        this.studentPhoto = [];
+        // loading.close();
+      }).catch(() => {
+        // loading.close();
+      })
+     },
     uploadSuccess(res, file, fileList) { //上传图片成功的回调(UI内置)
       console.log(res);
       this.form.pictureId = res.data;

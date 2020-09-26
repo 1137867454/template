@@ -59,32 +59,32 @@ export const asyncRouterMap = [{
   path: '/corporation',
   name: 'corporation',
   component: () => import('@/views/Home/Home'),
-  meta: { title: 'm.router.corporationManage', icon: 'el-icon-menu el'},
+  meta: { title: 'm.router.school', icon: 'el-icon-menu el'},
   children: [{
     path: 'manage',
     name: 'manage',
-    meta: { title: 'm.router.corporation', icon: 'el-icon-s-flag el'},
+    meta: { title: 'm.router.school', icon: 'el-icon-s-flag el'},
     component: () => import('../views/corporation/manage'),
     menu: 'corporation'
   },
   {
     path: 'department',
     name: 'department',
-    meta: { title: 'm.router.department', icon: 'el-icon-s-help el'},
+    meta: { title: 'm.router.class', icon: 'el-icon-s-help el'},
     component: () => import('../views/corporation/department'),
     menu: 'department'
   },
   {
     path: 'leader',
     name: 'leader',
-    meta: { title: 'm.router.leader', icon: 'el-icon-s-custom el'},
+    meta: { title: 'm.router.teacher', icon: 'el-icon-s-custom el'},
     component: () => import('../views/corporation/leader'),
     menu: 'leader'
   },
   {
     path: 'staff',
     name: 'staff',
-    meta: { title: 'm.router.staff', icon: 'el-icon-user-solid el'},
+    meta: { title: 'm.router.student', icon: 'el-icon-user-solid el'},
     component: () => import('../views/corporation/staff'),
     menu: 'staff'
   }
